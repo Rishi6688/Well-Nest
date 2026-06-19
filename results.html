@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>WellNest — Results</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="results.css">
+  <link rel="stylesheet" href="global.css">
+  <script src="lang.js"></script>
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- LANGUAGE BAR -->
+    <div class="lang-bar">
+      <span class="lang-label" data-i18n="lang_lbl">Language:</span>
+      <div class="lang-scroll">
+        <button class="lang-pill active">🇬🇧 English</button>
+        <button class="lang-pill">🇮🇳 हिंदी</button>
+        <button class="lang-pill">🇮🇳 தமிழ்</button>
+        <button class="lang-pill">🇮🇳 తెలుగు</button>
+        <button class="lang-pill">🇮🇳 ಕನ್ನಡ</button>
+        <button class="lang-pill">🇫🇷 Français</button>
+        <button class="lang-pill">🇪🇸 Español</button>
+      </div>
+    </div>
+
+    <!-- BACK BAR -->
+    <div class="back-bar">
+      <button class="btn-back" onclick="window.location.href='index.html'" data-i18n="back">← Back</button>
+      <span class="page-title" data-i18n="plan_title">Your plan</span>
+    </div>
+
+    <!-- GREEN SUMMARY BOX -->
+    <div class="summary-box">
+      <div class="summary-label" data-i18n="analyzing">Analysing your symptoms</div>
+      <h2 class="summary-title font-playfair" id="resultSummaryTitle">Cold & Fever</h2>
+      <div class="summary-subtitle" data-i18n="plan_sub">3 home remedies · 2 recipes · lifestyle plan ready</div>
+    </div>
+
+    <!-- 3-TAB SWITCHER -->
+    <div class="tab-switcher">
+      <button class="tab-btn active" data-tab="tab-remedies" data-i18n="tab_rem">Remedies</button>
+      <button class="tab-btn" data-tab="tab-cook" data-i18n="tab_cook">Cook Guide</button>
+      <button class="tab-btn" data-tab="tab-lifestyle" data-i18n="tab_life">Lifestyle</button>
+    </div>
+
+    <!-- TAB 1: REMEDIES (ACTIVE) -->
+    <div id="tab-remedies" class="tab-content active">
+      <div class="remedy-card">
+        <div class="remedy-header">
+          <div class="icon-box green">🍯</div>
+          <div>
+            <div class="remedy-title">Honey-Ginger-Lemon Decoction</div>
+            <div class="remedy-meta">Home remedy · 5 mins</div>
+          </div>
+        </div>
+        <div class="remedy-body">
+          <div class="remedy-desc">A powerful combination that soothes throat inflammation, reduces fever and boosts immunity.</div>
+          <div class="pill-row">
+            <span class="remedy-pill green">Antiviral</span>
+            <span class="remedy-pill green">Immunity boost</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn-cook" onclick="window.location.href='cook.html'">🎙 Start guided cook</button>
+            <button class="btn-ghost">Save remedy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="remedy-card">
+        <div class="remedy-header">
+          <div class="icon-box amber">🌿</div>
+          <div>
+            <div class="remedy-title">Tulsi Kadha</div>
+            <div class="remedy-meta">Home remedy · 10 mins</div>
+          </div>
+        </div>
+        <div class="remedy-body">
+          <div class="remedy-desc">Holy basil tea with black pepper and cardamom — traditional remedy for respiratory infections.</div>
+          <div class="pill-row">
+            <span class="remedy-pill amber">Respiratory</span>
+            <span class="remedy-pill amber">Anti-bacterial</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn-cook" onclick="window.location.href='cook.html'">🎙 Start guided cook</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: COOK GUIDE -->
+    <div id="tab-cook" class="tab-content">
+      <div class="guide-card">
+        <div class="guide-title">Honey-Ginger-Lemon Decoction</div>
+        <div class="guide-meta">5 ingredients · 5 minutes · Serves 1</div>
+        <div class="section-label">INGREDIENTS</div>
+        <div class="ingredient-grid">
+          <span class="ingredient-pill">🍯 Honey — 2 tsp</span>
+          <span class="ingredient-pill">🫚 Ginger — 1 inch</span>
+          <span class="ingredient-pill">🍋 Lemon — ½ piece</span>
+          <span class="ingredient-pill">🌶 Black pepper — 3</span>
+          <span class="ingredient-pill">💧 Water — 1 cup</span>
+        </div>
+      </div>
+
+      <div class="voice-bar" id="voiceToggleBtn">
+        <div class="voice-play">▶</div>
+        <div class="voice-text">
+          <div class="voice-title">Voice Guide Ready</div>
+          <div class="voice-sub">Tap to start step-by-step cooking guide</div>
+        </div>
+        <div class="voice-wave" id="voiceWave">
+          <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+        </div>
+      </div>
+
+      <div class="progress-bg">
+        <div class="progress-fill" id="cookProgress"></div>
+      </div>
+
+      <div class="cook-steps-list">
+        <div class="cook-step" id="cookStep1" onclick="updateStep(1, this)">
+          <div class="step-num">1</div>
+          <div class="step-text"><strong>Boil the water</strong> — Boil 1 cup of water in a saucepan on medium-high heat until rolling bubbles appear.</div>
+        </div>
+        <div class="cook-step" onclick="updateStep(2, this)">
+          <div class="step-num">2</div>
+          <div class="step-text"><strong>Add ginger</strong> — Peel and crush 1 inch of fresh ginger. Drop it into the boiling water.</div>
+        </div>
+        <div class="cook-step" onclick="updateStep(3, this)">
+          <div class="step-num">3</div>
+          <div class="step-text"><strong>Add pepper & simmer</strong> — Crush 3 black peppercorns and add to the pot. Reduce to low. Simmer 3 minutes.</div>
+        </div>
+        <div class="cook-step" onclick="updateStep(4, this)">
+          <div class="step-num">4</div>
+          <div class="step-text"><strong>Cool then add honey</strong> — Remove from heat. Wait 2 minutes. Stir in 2 tsp honey — never add to boiling liquid.</div>
+        </div>
+        <div class="cook-step" onclick="updateStep(5, this)">
+          <div class="step-num">5</div>
+          <div class="step-text"><strong>Squeeze lemon & serve</strong> — Squeeze half a lemon. Stir gently. Pour into a cup and sip slowly while warm.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: LIFESTYLE -->
+    <div id="tab-lifestyle" class="tab-content">
+      <div class="lifestyle-title">Recommended recovery activities</div>
+      <div class="lifestyle-grid">
+        <div class="lifestyle-card">
+          <div class="ls-icon">🚶</div><div class="ls-name">Walking</div><div class="ls-dur">20 mins</div>
+        </div>
+        <div class="lifestyle-card">
+          <div class="ls-icon">🧘</div><div class="ls-name">Yoga Nidra</div><div class="ls-dur">30 mins</div>
+        </div>
+        <div class="lifestyle-card">
+          <div class="ls-icon">🎵</div><div class="ls-name">Music Therapy</div><div class="ls-dur">Any time</div>
+        </div>
+        <div class="lifestyle-card">
+          <div class="ls-icon">💬</div><div class="ls-name">Social Time</div><div class="ls-dur">Call a friend</div>
+        </div>
+        <div class="lifestyle-card">
+          <div class="ls-icon">😴</div><div class="ls-name">Rest</div><div class="ls-dur">8-9 hrs</div>
+        </div>
+        <div class="lifestyle-card">
+          <div class="ls-icon">🌬</div><div class="ls-name">Breathing</div><div class="ls-dur">10 mins</div>
+        </div>
+      </div>
+
+      <div class="fallback-label">If remedies don't help in 48 hours</div>
+      
+      <div class="map-box">
+        <div class="map-icon">🗺</div>
+        <div class="map-title" data-i18n="loc_title">Doctors & Yoga Centers Near You</div>
+        <div class="map-sub">Showing within 10 km of your location</div>
+        <button class="btn-map" onclick="window.location.href='help.html'" data-i18n="loc_btn">Find nearby help &rarr;</button>
+      </div>
+    </div>
+
+    <!-- BOTTOM NAV BAR -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label" data-i18n="nav_home">Home</span>
+      </a>
+      <a href="results.html" class="nav-item active">
+        <span class="nav-icon">💊</span>
+        <span class="nav-label" data-i18n="nav_rem">Remedies</span>
+      </a>
+      <a href="cook.html" class="nav-item">
+        <span class="nav-icon">🍳</span>
+        <span class="nav-label" data-i18n="nav_cook">Cook Guide</span>
+      </a>
+      <a href="help.html" class="nav-item">
+        <span class="nav-icon">📍</span>
+        <span class="nav-label" data-i18n="nav_help">Find Help</span>
+      </a>
+    </nav>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
